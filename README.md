@@ -1,4 +1,4 @@
-# My Git Feed
-Application that centralize my git activity on various git platform providers: Github, Gitlab, Bitbucket.
+# My Git Feed Dev Frontend
+Development repository for https://github.com/criske/github.io.
 
 
