@@ -1,0 +1,15 @@
+.container {
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-content {
+    margin: calc(var(--nav-height) + 1rem) var(--side-gap) 1rem var(--side-gap);
+    height: 100%;
+}
