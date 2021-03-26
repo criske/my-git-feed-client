@@ -40,6 +40,8 @@ export const INITIAL_STATE = {
     }
 }
 
-export const BASE_API = 'https://my-git-feed.herokuapp.com';
+//TODO: reactive the real base API
+// export const BASE_API = 'https://my-git-feed.herokuapp.com';
+export const BASE_API = 'http://localhost:8080';
 
 

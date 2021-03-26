@@ -1,19 +1,12 @@
-import { useContext, useEffect } from "react"
-import { BASE_API } from '../state/State'
-import { StateContext } from "../state/StateContext";
+import './splash.css'
 
 export default function Splash() {
-    const { dispatchers } = useContext(StateContext)
-    useEffect(() => {
-        // fetch(`${BASE_API}/check/api`)
-        //     .then(dispatchers.ready)
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });
-        setTimeout(dispatchers.ready, 5000);
-    })
-
     return (
-        <div>Waking up the server</div>
+        <div>
+            <h1>Waking up the server</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+        </div>
     )
 }

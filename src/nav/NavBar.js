@@ -12,7 +12,7 @@ export default function NavBar({ hasRounter, provider, onSelect }) {
             <nav>
                 <div className="user">
                     {provider.user.avatar ?
-                        <img src={provider.user.avatar} /> : <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke="white" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>}
+                        <img src={provider.user.avatar} /> : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" stroke="white" strokeLinejoin="round" strokeWidth="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>}
                     <div className="provider">{provider.name}</div>
                     <a href={provider.user.link}>{provider.user.name}</a>
                 </div>

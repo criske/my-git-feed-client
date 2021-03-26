@@ -6,9 +6,9 @@ import './main.css'
 export default function Main() {
     return (
         <BrowserRouter>
-            <div class="container">
+            <div className="container">
                 <NavBarController />
-                <div class="nav-content">
+                <div className="nav-content">
                     <NavContent />
                 </div>
             </div>
