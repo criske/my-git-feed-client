@@ -4,14 +4,14 @@ import service from "../../service/MyGitFeedService";
 import NavBar from "./NavBar";
 
 export default function NavBarController({ hasRounter }) {
-    const { state, dispatchers } = useContext(StateContext);
-    const onSelect = (provider) => dispatchers.provider(provider);
+    const { state, actions } = useContext(StateContext);
+    const onSelect = (provider) => actions.provider(provider);
     useEffect(() => {
         state.loading?.call(null);
         const user = service.user(state.provider.name);
-        dispatchers.loading(user.abort);
-        user.request.then(dispatchers.user);
-        return () => user.abort();
+        actions.loading(user.cancel);
+        user.request.then(actions.user);
+        return () => user.cancel();
     }, [state.provider.name])
     return (<NavBar provider={state.provider} onSelect={onSelect} hasRounter={hasRounter} />)
 }

@@ -1,5 +1,7 @@
-export const Actions = {
+export const ActionType = {
     LOADING: Symbol('loading'),
+    ERROR: Symbol('error'),
+    CANCEL: Symbol('cancel'),
     USER: Symbol('user'),
     PROVIDER: Symbol('provider'),
     SELECTED: Symbol('selected'),
@@ -22,6 +24,7 @@ export const Pages = {
 
 export const INITIAL_STATE = {
     loading: null,
+    error: null,
     ready: false,
     provider: {
         name: "Github",
