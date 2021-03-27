@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
-import { StateContext } from "../state/StateContext";
-import Main from "../components/Main";
-import SplashController from "../components/SplashController";
+import { StateContext } from "../../state/StateContext";
+import Main from "../Main";
+import SplashController from "../SplashController";
 
 export default function StartUp() {
     const { state } = useContext(StateContext);

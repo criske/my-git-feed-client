@@ -1,8 +1,8 @@
 import { Route, Switch } from "react-router";
-import Assignments from "../components/assignments/Assignments";
-import Commits from "../components/commits/Commits";
-import Home from "../components/home/Home";
-import Repos from "../components/repos/Repos";
+import Assignments from "../assignments/Assignments";
+import Commits from "../commits/Commits";
+import Home from "../home/Home";
+import Repos from "../repos/Repos";
 
 const routes = [
     {
