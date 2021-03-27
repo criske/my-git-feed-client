@@ -1,0 +1,78 @@
+nav {
+    margin: 0;
+    display: flex;
+    height: var(--nav-height);
+    width: 100%;
+    align-items: center;
+    position: fixed;
+    gap: 2rem;
+    padding: 0 var(--side-gap) 0 var(--side-gap);
+    background-color: lavenderblush;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    gap: 2rem;
+    height: 100%;
+    align-items: center;
+    padding: 0;
+}
+
+.user {
+    margin-right: auto;
+    display: grid;
+    height: 80%;
+    position: relative;
+    justify-content: start;
+    padding: 0;
+    /* align-items: center; */
+    grid-template-columns: 3.2rem 1fr;
+    grid-template-rows: auto;
+}
+
+.user > img, svg {
+    align-self: center;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin-right: 0.5rem;
+}
+
+.user > svg {
+    padding: 0.2rem;
+    background-color: #F24302;
+}
+
+.user > div {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: bottom;
+    text-align: bot;
+    vertical-align: text-top;
+    align-self: end;
+}
+
+.user > a {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: top;
+    font-size: 0.6rem;
+    height: 1rem;
+}
+
+.providers {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blueviolet; */
+}
+
+select {
+    font-size: inherit;
+    padding: 0.2rem;
+    /* background-color: red; */
+}

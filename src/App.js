@@ -1,23 +1,12 @@
-import { React, useEffect, useState } from 'react'
+import React from 'react';
+import { StateProvider } from './state/StateContext';
+import StartUp from './nav/StartUp';
 
 function App() {
-    const [data, setData] = useState("Loading...");
-
-    useEffect(() => {
-        fetch('https://my-git-feed.herokuapp.com/api/github/repos',)
-            .then(response => response.json())
-            .then(data => {
-                setData(JSON.stringify(data));
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
-
     return (
-        <div className="my-align">
-            {data}
-        </div>
+        <StateProvider>
+            <StartUp />
+        </StateProvider>
     );
 }
 
