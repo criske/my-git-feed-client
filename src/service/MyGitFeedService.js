@@ -1,4 +1,7 @@
-import { BASE_API } from "../state/State";
+//TODO: reactive the real base API
+const BASE_API = 'https://my-git-feed.herokuapp.com';
+//const BASE_API = 'http://localhost:8080';
+
 
 const jsonFetch = (path) => {
     const controller = new AbortController();
@@ -6,7 +9,7 @@ const jsonFetch = (path) => {
     const request = fetch(`${BASE_API}${path}`, {
         signal,
         headers: {
-            'Access-Control-Allow-Origin': '*'
+            'Content-Type': 'application/json'
         }
     }).then(r => r.json());
     const abort = () => {
