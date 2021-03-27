@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { StateContext } from "../state/StateContext";
-import service from "../service/MyGitFeedService";
+import { StateContext } from "../../state/StateContext";
+import service from "../../service/MyGitFeedService";
 import NavBar from "./NavBar";
 
 export default function NavBarController({ hasRounter }) {

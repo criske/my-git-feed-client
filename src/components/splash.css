@@ -1,4 +1,4 @@
-div {
+.splash-container {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -6,12 +6,12 @@ div {
     justify-content: center;
 }
 
-h1 {
+.splash-container > h1 {
     font-weight: 700;
     font-size: 4em;
 }
 
-svg {
+.splash-container > svg {
     animation: wait-fading-loop 3s infinite;
 }
 
