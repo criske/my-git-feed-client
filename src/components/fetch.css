@@ -1,0 +1,10 @@
+.fetch-container {
+    border: red solid 1;
+    background-color: salmon;
+    width: 15em;
+    height: 5em;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    z-index: 999;
+}
