@@ -1,6 +1,6 @@
 import React from 'react';
 import { StateProvider } from './state/StateContext';
-import StartUp from './components/nav/StartUp';
+import StartUp from './components/startup/StartUp';
 
 function App() {
     return (
