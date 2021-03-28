@@ -3,35 +3,37 @@ import service from "./../service/MyGitFeedService";
 import { StateContext } from "../state/StateContext";
 
 export default function FetchController({ children }) {
-    const { state, actions } = useContext(StateContext)
+    const { state, actions } = useContext(StateContext);
+
     const [retryCount, setRetryCount] = useState(0);
     const [cancelHandler, setCancelHandler] = useState(() => {});
     const [err, setErr] = useState(null)
+    
     const onRetry = () => { setRetryCount(retryCount + 1); }
     const onCancel = () => {
         cancelHandler();
         actions.loading(false);
         setErr("Canceled");
     }
+    const remoteCallFnName = state.fetch.call.name;
     useEffect(() => {
-        const call = state.fetch.call.name;
-        if (call != null) {
-            const remoteCall = service[call]
-                .apply(null, state.fetch.call.args)
+        if (remoteCallFnName != null) {
             actions.loading(true);
+            const remoteCall = service[remoteCallFnName]
+                .apply(null, state.fetch.call.args);
             remoteCall
                 .request
                 .then((result) => {
                     setErr(null);
-                    actions[state.fetch.onSuccess.name].apply(null, result)
+                    const actionDispatchName = state.fetch.onSuccess.name;
+                    actions[actionDispatchName].apply(null, result)
                 })
                 .catch(setErr)
                 .finally(() => actions.loading(false));
             setCancelHandler(() => remoteCall.cancel)
         }
-    }, [retryCount, state.fetch.call.name]);
+    }, [retryCount, remoteCallFnName]);
     const ChildrenWithProps = React.Children.map(children, (child) => {
-        console.log(err)
         return React.cloneElement(child, {
             isLoading: state.fetch.loading,
             error: err,
