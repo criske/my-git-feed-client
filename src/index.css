@@ -1,22 +1,54 @@
 :root {
     --nav-height: 4rem;
     --side-gap: 3rem;
+    --border-radius: 0.5em;
+
+    --clr-primary-100: #E7E7EF;
+    --clr-primary-200: #B6B6CE;
+    --clr-primary-300: #8585AD;
+    --clr-primary-400: #5A5A87;
+    --clr-primary-500: #404060;
+    --clr-primary-900: #0d0d13;
+
+    --clr-secondary-100: #F1E6EA;
+    --clr-secondary-200: #D6B4C1 ;
+    --clr-secondary-300: #BA8298;
+    --clr-secondary-400: #995470;
+    --clr-secondary-500: #703E52;
+
+    --clr-accent-500: #cc5a71;
+
+    --clr-highlight-inv-500: #f0f757;
+
+    --clr-highlight-500: #c89b7b;
 }
 
 body {
     margin: 0;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+    
+
+    /* font */
+    font-family: 'Lato', sans-serif;
+    color:var(--clr-primary-900);   
+    line-height: 1.5; 
+    font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #d3cce3; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #e9e4f0, #d3cce3); /* Chrome 10-25, Safari 5.1-6 */
+
+    /* bg */
+    background: var(--clr-primary-100); /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to bottom,
+        var(--clr-primary-100),
+        #FFFFFF
+    ); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
         to bottom,
-        #e9e4f0,
-        #d3cce3
+        var(--clr-primary-100),
+        #FFFFFF
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 #root {

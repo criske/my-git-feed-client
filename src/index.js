@@ -6,10 +6,6 @@ import App from './App';
 ReactDOM.render(
     <React.StrictMode>
         <App />
-        {/* <StateProvider>
-            <NavBarController hasRounter={true} />
-        </StateProvider> */}
-        {/* <Splash/> */}
     </React.StrictMode>,
     document.getElementById('root')
 );

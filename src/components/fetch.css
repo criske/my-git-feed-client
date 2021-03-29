@@ -1,10 +1,60 @@
 .fetch-container {
-    border: red solid 1;
-    background-color: salmon;
-    width: 15em;
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    gap:0.5em;
+    color: var(--clr-secondary-100);
+    box-shadow:  0.2em 0.2em 0.5em var(--clr-primary-300); 
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--clr-primary-500);
+    max-width: 20em;
+    min-width: 15em;
     height: 5em;
     position: absolute;
     bottom: 2em;
     right: 2em;
     z-index: 999;
 }
+
+.fetch-container > p {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    height: 100%;
+    overflow: hidden;
+    font-size: 0.87em;
+    text-align: start;
+}
+
+.fetch-container > a {
+    display: inline-block;
+    padding: 0.5em 0.8em;
+    background-color: var(--clr-secondary-500);
+    border-radius: var(--border-radius);
+    max-width: 10em;
+    color: var(--clr-highlight-inv);
+}
+
+.fetch-container > a:hover {
+    background-color: #F1F86A;
+    color: var(--clr-primary-500);
+    cursor: pointer;
+}
+
+.loader {
+    flex-shrink: 0;
+    --border-size: 0.2em;
+    --loader-size: 3em;
+
+    border: var(--border-size) solid var(--clr-primary-100);
+    border-top: var(--border-size) solid var(--clr-secondary-500);
+    border-radius: 50%;
+    width:  var(--loader-size);
+    height: var(--loader-size);
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
