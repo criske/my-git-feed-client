@@ -1,0 +1,134 @@
+.fetch-container {
+    display: flex;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    height: 5rem;
+    width: 25rem;
+}
+
+.error-box {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    margin: auto;
+    gap: 0.8rem;
+    color: var(--clr-secondary-100);
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--clr-primary-300);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--clr-primary-500);
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+}
+
+.error-box > p {
+    display: -webkit-box;
+    flex-grow: 1;
+    max-height: 100%;
+    overflow: hidden;
+    text-align: start;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
+.error-box > a {
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.8rem;
+    max-width: 5rem;
+    height: 2.5rem;
+    color: var(--clr-highlight-inv);
+    border: .01rem solid var(--clr-secondary-300);
+    border-radius: var(--border-radius);
+    background-color: var(--clr-secondary-500);
+    transition: background-color 500ms;
+    font-weight: 700;
+}
+
+.error-box > a:hover {
+    background-color: var(--clr-secondary-400);
+    color: var(--clr-highlight-inv);
+    cursor: pointer;
+}
+
+.error-box > svg {
+    --size: 3rem;
+    flex-shrink: 0;
+    height: var(--size);
+    width: var(--size);
+    background-color: var(--clr-secondary-500);
+    border-radius: 50%;
+}
+
+:root{
+    --anim-duration: 300ms;
+}
+
+.fade-enter {
+    opacity: 0;
+    transform: scale(0.9);
+}
+.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity var(--anim-duration), transform var(--anim-duration);
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity var(--anim-duration), transform var(--anim-duration);
+}
+
+.loading-fade {
+    opacity: 0;
+}
+
+
+.loading-fade-active {
+    opacity: 1;
+    transition: opacity var(--anim-duration);
+}
+
+.loading-fade-exit {
+    opacity: 1;
+}
+
+.loading-fade-exit-active {
+    opacity: 0;
+    transition: opacity calc(var(--anim-duration))
+}
+
+
+.loading-spinner {
+    align-self: flex-end;
+    margin-left: auto;
+
+    --border-size: 0.25rem;
+    --loader-size: 3rem;
+
+    border: var(--border-size) solid var(--clr-primary-100);
+    border-top: var(--border-size) solid var(--clr-secondary-500);
+    border-radius: 50%;
+    width: var(--loader-size);
+    height: var(--loader-size);
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

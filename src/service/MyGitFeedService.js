@@ -26,7 +26,7 @@ const jsonFetch = (path) => {
     let id; 
     const cancel = () => { clearTimeout(id) }
     const request = new Promise((resolve, reject) =>{
-        id = setTimeout(() => reject("Failed to fetch"), 5000);
+        id = setTimeout(() => reject("Failed to fetch"), 7000);
     });
     return { request, cancel };
 }

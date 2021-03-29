@@ -11,9 +11,12 @@ export const StateProvider = ({ children }) => {
                 return { ...state, ready: true }
             }
             case ActionType.LOADING: {
-                return { ...state, loading: action.payload }
+                return { ...state, fetch: { ...state.fetch, loading: action.payload } }
             }
-            case ActionType.CANCEL : {
+            case ActionType.FETCH: {
+                return { ...state, fetch: { ...state.fetch, call: action.payload } }
+            }
+            case ActionType.CANCEL: {
                 return { ...state, loading: null }
             }
             case ActionType.ERROR: {
@@ -40,29 +43,35 @@ export const StateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(stateReducer, INITIAL_STATE);
 
     const actions = {
-        loading: (cancelSignal) => {
-            state.loading?.call(null);
-            dispatch({ type: ActionType.LOADING, payload: cancelSignal })
+        loading: (isLoading) => {
+            dispatch({ type: ActionType.LOADING, payload: isLoading })
         },
-        cancel: function () { 
-            state.loading?.call(null);
-            dispatch({ type: ActionType.CANCEL }) ;
+        fetch: function (remoteCall, remoteArgs, dispatchCall, dispatchArgs) {
+            // this.loading(fetchService.cancel);
+            // fetchService.request
+            //     .then((r) => {
+            //         this.cancel();
+            //         onSuccess(r);
+            //     })
+            //     .catch(this.error);
+            dispatch({
+                type: ActionType.FETCH,
+                payload: {
+                    name: remoteCall,
+                    args: remoteArgs || [],
+                    onSuccess: {
+                        dispatcherCall: dispatchCall || null,
+                        args: dispatchArgs || [],
+                    }
+                }
+            })
         },
-        error: (error) => dispatch({ type: ActionType.ERROR, payload: error }),
         provider: (name) => dispatch({ type: ActionType.PROVIDER, payload: name }),
         user: (user) => dispatch({ type: ActionType.USER, payload: user }),
         content: (page, content) => dispatch({ type: ActionType.PAGE_CONTENT, payload: { page, content } }),
         select: (page) => dispatch({ type: ActionType.SELECTED, payload: { page } }),
         ready: () => dispatch({ type: ActionType.API_READY }),
-        fetch: function (fetchService, onSuccess) {
-            this.loading(fetchService.cancel);
-            fetchService.request
-                .then((r) => {
-                    this.cancel();
-                    onSuccess(r);
-                })
-                .catch(this.error);
-        }
+       
     }
 
     return (<StateContext.Provider value={{ state, actions }}>{children}</StateContext.Provider>);
