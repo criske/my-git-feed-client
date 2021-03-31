@@ -16,24 +16,34 @@ export const StateProvider = ({ children }) => {
             case ActionType.FETCH: {
                 return { ...state, fetch: { ...state.fetch, call: action.payload } }
             }
-            case ActionType.CANCEL: {
-                return { ...state, loading: null }
-            }
-            case ActionType.ERROR: {
-                return { ...state, loading: null, error: action.payload }
-            }
             case ActionType.USER: {
-                return { ...state, loading: null, error: null, provider: { ...state.provider, user: action.payload } }
-            }
-            case ActionType.PROVIDER: {
-                return { ...state, provider: { ...state.provider, name: action.payload, user: { ...state.provider.user, avatar: null, name: "" } } }
+                return {
+                    ...state,
+                    provider: {
+                        name: action.payload.provider,
+                        user: action.payload
+                    }
+                }
             }
             case ActionType.SELECTED: {
                 return { ...state, page: { ...state.page, name: action.payload } }
             }
-            case ActionType.PAGE_CONTENT: {
-                const copy = { ...state, loading: null, error: null };
-                copy.pages[action.payload.page] = action.payload.content;
+            case ActionType.ASSIGNMENTS: {
+                const copy = { ...state };
+                copy.pages.selected = "assignments";
+                copy.pages.assignments = action.payload;
+                return copy;
+            }
+            case ActionType.COMMITS: {
+                const copy = { ...state };
+                copy.pages.selected = "commits";
+                copy.pages.commits = action.payload;
+                return copy;
+            }
+            case ActionType.REPOS: {
+                const copy = { ...state };
+                copy.pages.selected = "repos";
+                copy.pages.repos = action.payload;
                 return copy;
             }
             default: return state;
@@ -47,31 +57,26 @@ export const StateProvider = ({ children }) => {
             dispatch({ type: ActionType.LOADING, payload: isLoading })
         },
         fetch: function (remoteCall, remoteArgs, dispatchCall, dispatchArgs) {
-            // this.loading(fetchService.cancel);
-            // fetchService.request
-            //     .then((r) => {
-            //         this.cancel();
-            //         onSuccess(r);
-            //     })
-            //     .catch(this.error);
             dispatch({
                 type: ActionType.FETCH,
                 payload: {
-                    name: remoteCall,
+                    name: `${remoteCall}#${Math.random() * 10000000}`,
                     args: remoteArgs || [],
                     onSuccess: {
-                        dispatcherCall: dispatchCall || null,
+                        name: dispatchCall || null,
                         args: dispatchArgs || [],
                     }
                 }
             })
         },
-        provider: (name) => dispatch({ type: ActionType.PROVIDER, payload: name }),
-        user: (user) => dispatch({ type: ActionType.USER, payload: user }),
+        user: (user) => { dispatch({ type: ActionType.USER, payload: user }) },
         content: (page, content) => dispatch({ type: ActionType.PAGE_CONTENT, payload: { page, content } }),
         select: (page) => dispatch({ type: ActionType.SELECTED, payload: { page } }),
+        assignments: (page) => dispatch({ type: ActionType.ASSIGNMENTS, payload: { page } }),
+        commits: (page) => dispatch({ type: ActionType.COMMITS, payload: { page } }),
+        repos: (page) => dispatch({ type: ActionType.REPOS, payload: { page } }),
         ready: () => dispatch({ type: ActionType.API_READY }),
-       
+
     }
 
     return (<StateContext.Provider value={{ state, actions }}>{children}</StateContext.Provider>);

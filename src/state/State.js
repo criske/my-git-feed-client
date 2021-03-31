@@ -2,9 +2,10 @@ export const ActionType = {
     LOADING: Symbol('loading'),
     FETCH: Symbol('fetch'),
     USER: Symbol('user'),
-    PROVIDER: Symbol('provider'),
     SELECTED: Symbol('selected'),
-    PAGE_CONTENT: Symbol('page_content'),
+    ASSIGNMENTS: Symbol('assignments'),
+    COMMITS: Symbol('commits'),
+    REPOS: Symbol('repos'),
     API_READY: Symbol('api_ready')
 }
 
@@ -33,14 +34,14 @@ export const INITIAL_STATE = {
             }
         }
     },
-    error: null,
     ready: false,
     provider: {
         name: "Github",
         user: {
             name: '',
             avatar: null,
-            link: ''
+            link: '',
+            provider: "Github"
         },
     },
     pages: {

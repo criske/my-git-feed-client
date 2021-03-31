@@ -4,7 +4,7 @@ import { StateContext } from '../../state/StateContext';
 const Home = () => {
     const {state} = useContext(StateContext);
     return (
-        <div>{state.pages.selected}</div>
+        <div>Home</div>
     )
 }
 
