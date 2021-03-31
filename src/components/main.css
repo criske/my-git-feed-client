@@ -13,3 +13,8 @@
     margin: calc(var(--nav-height) + 1rem) var(--side-gap) 1rem var(--side-gap);
     height: 100%;
 }
+
+
+.button {
+   padding: 1rem; 
+}

@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { Actions, INITIAL_STATE } from './State';
+import { ActionType, INITIAL_STATE } from './State';
 
 export const StateContext = createContext(INITIAL_STATE);
 
@@ -7,24 +7,43 @@ export const StateProvider = ({ children }) => {
 
     const stateReducer = (state, action) => {
         switch (action.type) {
-            case Actions.API_READY: {
+            case ActionType.API_READY: {
                 return { ...state, ready: true }
             }
-            case Actions.LOADING: {
-                return { ...state, loading: action.payload }
+            case ActionType.LOADING: {
+                return { ...state, fetch: { ...state.fetch, loading: action.payload } }
             }
-            case Actions.USER: {
-                return { ...state, loading: null, provider: { ...state.provider, user: action.payload } }
+            case ActionType.FETCH: {
+                return { ...state, fetch: { ...state.fetch, call: action.payload } }
             }
-            case Actions.PROVIDER: {
-                return { ...state, provider: { ...state.provider, name: action.payload, user: {...state.provider.user, avatar: null, name:""} } }
+            case ActionType.USER: {
+                return {
+                    ...state,
+                    provider: {
+                        name: action.payload.provider,
+                        user: action.payload
+                    }
+                }
             }
-            case Actions.SELECTED: {
+            case ActionType.SELECTED: {
                 return { ...state, page: { ...state.page, name: action.payload } }
             }
-            case Actions.PAGE_CONTENT: {
-                const copy = { ...state, loading: null };
-                copy.pages[action.payload.page] = action.payload.content;
+            case ActionType.ASSIGNMENTS: {
+                const copy = { ...state };
+                copy.pages.selected = "assignments";
+                copy.pages.assignments = action.payload;
+                return copy;
+            }
+            case ActionType.COMMITS: {
+                const copy = { ...state };
+                copy.pages.selected = "commits";
+                copy.pages.commits = action.payload;
+                return copy;
+            }
+            case ActionType.REPOS: {
+                const copy = { ...state };
+                copy.pages.selected = "repos";
+                copy.pages.repos = action.payload;
                 return copy;
             }
             default: return state;
@@ -33,15 +52,32 @@ export const StateProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(stateReducer, INITIAL_STATE);
 
-    const dispatchers = {
-        loading: (cancelSignal) => dispatch({ type: Actions.LOADING, payload: cancelSignal }),
-        cancel: function () { this.loading(null) },
-        provider: (name) => dispatch({ type: Actions.PROVIDER, payload: name }),
-        user: (user) => dispatch({ type: Actions.USER, payload: user }),
-        content: (page, content) => dispatch({ type: Actions.PAGE_CONTENT, payload: { page, content } }),
-        select: (page) => dispatch({ type: Actions.SELECTED, payload: { page } }),
-        ready: () => dispatch({ type: Actions.API_READY })
+    const actions = {
+        loading: (isLoading) => {
+            dispatch({ type: ActionType.LOADING, payload: isLoading })
+        },
+        fetch: function (remoteCall, remoteArgs, dispatchCall, dispatchArgs) {
+            dispatch({
+                type: ActionType.FETCH,
+                payload: {
+                    name: `${remoteCall}#${Math.random() * 10000000}`,
+                    args: remoteArgs || [],
+                    onSuccess: {
+                        name: dispatchCall || null,
+                        args: dispatchArgs || [],
+                    }
+                }
+            })
+        },
+        user: (user) => { dispatch({ type: ActionType.USER, payload: user }) },
+        content: (page, content) => dispatch({ type: ActionType.PAGE_CONTENT, payload: { page, content } }),
+        select: (page) => dispatch({ type: ActionType.SELECTED, payload: { page } }),
+        assignments: (page) => dispatch({ type: ActionType.ASSIGNMENTS, payload: { page } }),
+        commits: (page) => dispatch({ type: ActionType.COMMITS, payload: { page } }),
+        repos: (page) => dispatch({ type: ActionType.REPOS, payload: { page } }),
+        ready: () => dispatch({ type: ActionType.API_READY }),
+
     }
 
-    return (<StateContext.Provider value={{state, dispatchers}}>{children}</StateContext.Provider>);
+    return (<StateContext.Provider value={{ state, actions }}>{children}</StateContext.Provider>);
 };

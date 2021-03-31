@@ -7,7 +7,7 @@ nav {
     position: fixed;
     gap: 2rem;
     padding: 0 var(--side-gap) 0 var(--side-gap);
-    background-color: lavenderblush;
+    background-color: var(--clr-primary-100);
 }
 
 ul {

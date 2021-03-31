@@ -1,19 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StateContext } from "../../state/StateContext";
-import service from "../../service/MyGitFeedService";
 import NavBar from "./NavBar";
 
 export default function NavBarController({ hasRounter }) {
-    const { state, dispatchers } = useContext(StateContext);
-    const onSelect = (provider) => dispatchers.provider(provider);
+    const { state, actions } = useContext(StateContext);
+    const [provider, setProvider] = useState(state.provider.name);
     useEffect(() => {
-        state.loading?.call(null);
-        const user = service.user(state.provider.name);
-        dispatchers.loading(user.abort);
-        user.request.then(dispatchers.user);
-        return () => user.abort();
-    }, [state.provider.name])
-    return (<NavBar provider={state.provider} onSelect={onSelect} hasRounter={hasRounter} />)
+        actions.fetch("user", [provider], "user");
+    }, [provider])
+    return (<NavBar provider={state.provider} onSelect={setProvider} hasRounter={hasRounter} />)
 }
 
 NavBarController.defaultProps = {
