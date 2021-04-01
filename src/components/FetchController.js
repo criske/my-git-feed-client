@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from "react"
-import service from "./../service/MyGitFeedService";
-import { StateContext } from "../state/StateContext";
+import { StateContext } from "../state/StateContext.tsx";
+import service from "./../service/MyGitFeedService.ts";
 
 export default function FetchController({ children }) {
 
@@ -30,8 +30,7 @@ export default function FetchController({ children }) {
             remoteCall
                 .request
                 .then((result) => {
-                    setErr(null);
-                    const actionDispatchName = state.fetch.call.onSuccess.name;
+                    const actionDispatchName = state.fetch.call.stateActionType;
                     actions[actionDispatchName].call(null, result)
                 })
                 .catch(setErr)

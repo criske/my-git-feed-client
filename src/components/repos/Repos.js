@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { StateContext } from "../../state/StateContext"
+import { StateContext } from "../../state/StateContext.tsx"
 
 export default function Assignments({ location }) {
     const { state, actions } = useContext(StateContext);

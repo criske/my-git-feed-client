@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StateContext } from "../../state/StateContext";
+import { StateContext } from "../../state/StateContext.tsx";
 import Main from "../Main";
 import FetchController from "../FetchController";
 import SplashController from "./SplashController";

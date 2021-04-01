@@ -4,16 +4,19 @@ export interface FetchResult {
     request: Promise<object>;
     cancel: () => void;
 }
-export type FetchRequest =  (path: String) => FetchResult
-export type ProviderFetchRequest =  (provider: Provider) => FetchResult
-export type FetchService = { [key: string] : ProviderFetchRequest | (() => FetchResult)}
+export type FetchRequest = (path: String) => FetchResult
+export type ProviderFetchRequest = (provider: Provider) => FetchResult
+
+export type FetchTypes = 'ping' | 'user' | 'assignments' | 'commits' | 'repos'
+
+export type FetchService = { [key: string]: ProviderFetchRequest | (() => FetchResult) }
 
 
 //TODO: reactive the real base API
 const BASE_API = 'https://my-git-feed.herokuapp.com';
 //const BASE_API = 'http://localhost:8080';
 
-const fakeServer: { [key: string] : () => object } = {
+const fakeServer: { [key: string]: () => object } = {
     '/check/ping': () => ({}),
 
     '/api/github/me': () => ({
@@ -31,11 +34,11 @@ const fakeServer: { [key: string] : () => object } = {
     '/api/bitbucket/assignments': () => { throw new Error("Bitbucket provider not found") },
 
 
-    '/api/github/commits': () => ({ assignments: "These are Github commits" }),
+    '/api/github/commits': () => ({ commits: "These are Github commits" }),
     '/api/gitlab/commits': () => { throw new Error("Gitlab provider not found") },
     '/api/bitbucket/commits': () => { throw new Error("Bitbucket provider not found") },
 
-    '/api/github/repos': () => ({ assignments: "These are Github repos" }),
+    '/api/github/repos': () => ({ repos: "These are Github repos" }),
     '/api/gitlab/repos': () => { throw new Error("Gitlab provider not found") },
     '/api/bitbucket/repos': () => { throw new Error("Bitbucket provider not found") },
 }
@@ -84,10 +87,12 @@ const jsonFetch: (path: String) => FetchResult = (path) => {
     return { request, cancel };
 }
 
-export default {
+
+const service: FetchService = {
     ping: () => jsonFetch('/check/ping'),
     user: (provider: Provider) => jsonFetch(`/api/${provider}/me`),
     assignments: (provider: Provider) => jsonFetch(`/api/${provider}/assignments`),
     commits: (provider: Provider) => jsonFetch(`/api/${provider}/commits`),
     repos: (provider: Provider) => jsonFetch(`/api/${provider}/repos`)
-} as FetchService
+}
+export default service

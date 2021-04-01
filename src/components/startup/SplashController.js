@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { StateContext } from "../../state/StateContext";
+import { StateContext } from "../../state/StateContext.tsx";
 import Splash from "./Splash";
 
 export default function SplashController(props) {
