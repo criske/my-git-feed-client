@@ -10,7 +10,8 @@ const fakeServer = {
         name: "criske",
         avatar: "https://avatars.githubusercontent.com/u/10284893?v=4",
         url: "https://github.com/criske",
-        type: "User"
+        type: "User",
+        provider: "Github"
     }),
     '/api/gitlab/me': () => { throw new Error("Gitlab profile not found") },
     '/api/bitbucket/me': () => { throw new Error("Bitbucket profile not found") },
@@ -31,44 +32,44 @@ const fakeServer = {
 
 
 const jsonFetch = (path) => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    const request = fetch(`${BASE_API}${path}`, {
-        signal,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(r => {
-        if (!r.ok) {
-            return r.json().then((e) => {
-                return Promise.reject({ message: e.error });
-            });
-        } else {
-            return r.json()
-        }
+    // const controller = new AbortController();
+    // const signal = controller.signal;
+    // const request = fetch(`${BASE_API}${path}`, {
+    //     signal,
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }).then(r => {
+    //     if (!r.ok) {
+    //         return r.json().then((e) => {
+    //             return Promise.reject({ message: e.error });
+    //         });
+    //     } else {
+    //         return r.json()
+    //     }
 
-    })
-        .catch((e) => {
-            return Promise.reject(e.message)
-        });
-    const cancel = () => {
-        try {
-            controller.abort();
-        } catch (e) {
-            console.error(e);
-        }
-    }
+    // })
+    //     .catch((e) => {
+    //         return Promise.reject(e.message)
+    //     });
+    // const cancel = () => {
+    //     try {
+    //         controller.abort();
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
     let id;
-    //const cancel = () => { clearTimeout(id) }
-    // const request = new Promise((resolve, reject) => {
-    //     id = setTimeout(() => {
-    //         try {
-    //             resolve(fakeServer[path.toLowerCase()]());
-    //         } catch (error) {
-    //             reject(error.message);
-    //         }
-    //     }, 5000);
-    // });
+    const cancel = () => { clearTimeout(id) }
+    const request = new Promise((resolve, reject) => {
+        id = setTimeout(() => {
+            try {
+                resolve(fakeServer[path.toLowerCase()]());
+            } catch (error) {
+                reject(error.message);
+            }
+        }, 000);
+    });
     return { request, cancel };
 }
 
