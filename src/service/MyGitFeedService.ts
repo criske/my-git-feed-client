@@ -48,45 +48,45 @@ const fakeServer: { [key: string]: () => Object } = {
 
 
 const jsonFetch: (path: String) => FetchResult = (path) => {
-    // const controller = new AbortController();
-    // const signal = controller.signal;
-    // const request = fetch(`${BASE_API}${path}`, {
-    //     signal,
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // }).then(r => {
-    //     if (!r.ok) {
-    //         return r.json().then((e) => {
-    //             return Promise.reject({ message: e.error });
-    //         });
-    //     } else {
-    //         return r.json()
-    //     }
+    const controller = new AbortController();
+    const signal = controller.signal;
+    const request = fetch(`${BASE_API}${path}`, {
+        signal,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(r => {
+        if (!r.ok) {
+            return r.json().then((e) => {
+                return Promise.reject({ message: e.error });
+            });
+        } else {
+            return r.json()
+        }
 
-    // })
-    //     .catch((e) => {
-    //         return Promise.reject(e.message)
-    //     });
-    // const cancel = () => {
-    //     try {
-    //         controller.abort();
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    // }
-    let id: any;
-    const cancel = () => { clearTimeout(id) }
-    const request = new Promise<object>((resolve, reject) => {
-        id = setTimeout(() => {
-            try {
-                const response: object = fakeServer[path.toLowerCase()]();
-                resolve(response);
-            } catch (error) {
-                reject(error.message);
-            }
-        }, 1000);
-    });
+    })
+        .catch((e) => {
+            return Promise.reject(e.message)
+        });
+    const cancel = () => {
+        try {
+            controller.abort();
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    // let id: any;
+    // const cancel = () => { clearTimeout(id) }
+    // const request = new Promise<object>((resolve, reject) => {
+    //     id = setTimeout(() => {
+    //         try {
+    //             const response: object = fakeServer[path.toLowerCase()]();
+    //             resolve(response);
+    //         } catch (error) {
+    //             reject(error.message);
+    //         }
+    //     }, 1000);
+    // });
     return { request, cancel };
 }
 
