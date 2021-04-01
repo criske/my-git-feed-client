@@ -1,6 +1,6 @@
 //TODO: reactive the real base API
-//const BASE_API = 'https://my-git-feed.herokuapp.com';
-const BASE_API = 'http://localhost:8080';
+const BASE_API = 'https://my-git-feed.herokuapp.com';
+//const BASE_API = 'http://localhost:8080';
 
 
 const fakeServer = {
