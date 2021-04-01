@@ -1,0 +1,93 @@
+import { Provider } from "../state/State";
+
+export interface FetchResult {
+    request: Promise<object>;
+    cancel: () => void;
+}
+export type FetchRequest =  (path: String) => FetchResult
+export type ProviderFetchRequest =  (provider: Provider) => FetchResult
+export type FetchService = { [key: string] : ProviderFetchRequest | (() => FetchResult)}
+
+
+//TODO: reactive the real base API
+const BASE_API = 'https://my-git-feed.herokuapp.com';
+//const BASE_API = 'http://localhost:8080';
+
+const fakeServer: { [key: string] : () => object } = {
+    '/check/ping': () => ({}),
+
+    '/api/github/me': () => ({
+        name: "criske",
+        avatar: "https://avatars.githubusercontent.com/u/10284893?v=4",
+        url: "https://github.com/criske",
+        type: "User",
+        provider: "Github"
+    }),
+    '/api/gitlab/me': () => { throw new Error("Gitlab profile not found") },
+    '/api/bitbucket/me': () => { throw new Error("Bitbucket profile not found") },
+
+    '/api/github/assignments': () => ({ assignments: "These are Github assignments" }),
+    '/api/gitlab/assignments': () => { throw new Error("Gitlab provider not found") },
+    '/api/bitbucket/assignments': () => { throw new Error("Bitbucket provider not found") },
+
+
+    '/api/github/commits': () => ({ assignments: "These are Github commits" }),
+    '/api/gitlab/commits': () => { throw new Error("Gitlab provider not found") },
+    '/api/bitbucket/commits': () => { throw new Error("Bitbucket provider not found") },
+
+    '/api/github/repos': () => ({ assignments: "These are Github repos" }),
+    '/api/gitlab/repos': () => { throw new Error("Gitlab provider not found") },
+    '/api/bitbucket/repos': () => { throw new Error("Bitbucket provider not found") },
+}
+
+
+const jsonFetch: (path: String) => FetchResult = (path) => {
+    // const controller = new AbortController();
+    // const signal = controller.signal;
+    // const request = fetch(`${BASE_API}${path}`, {
+    //     signal,
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }).then(r => {
+    //     if (!r.ok) {
+    //         return r.json().then((e) => {
+    //             return Promise.reject({ message: e.error });
+    //         });
+    //     } else {
+    //         return r.json()
+    //     }
+
+    // })
+    //     .catch((e) => {
+    //         return Promise.reject(e.message)
+    //     });
+    // const cancel = () => {
+    //     try {
+    //         controller.abort();
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
+    let id: any;
+    const cancel = () => { clearTimeout(id) }
+    const request = new Promise<object>((resolve, reject) => {
+        id = setTimeout(() => {
+            try {
+                const response: object = fakeServer[path.toLowerCase()]();
+                resolve(response);
+            } catch (error) {
+                reject(error.message);
+            }
+        }, 1000);
+    });
+    return { request, cancel };
+}
+
+export default {
+    ping: () => jsonFetch('/check/ping'),
+    user: (provider: Provider) => jsonFetch(`/api/${provider}/me`),
+    assignments: (provider: Provider) => jsonFetch(`/api/${provider}/assignments`),
+    commits: (provider: Provider) => jsonFetch(`/api/${provider}/commits`),
+    repos: (provider: Provider) => jsonFetch(`/api/${provider}/repos`)
+} as FetchService
