@@ -1,6 +1,7 @@
+import { FetchContext } from '../FetchContext'
 import './splash.css'
 
-export default function Splash({ isLoading, error, onRetry, onCancel }) {
+export default function Splash({ isLoading, error, onRetry, onCancel } : FetchContext) {
     return (
         <div className="splash-container">
             { (isLoading) ?

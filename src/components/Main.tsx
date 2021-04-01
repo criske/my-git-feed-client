@@ -1,19 +1,18 @@
 import { BrowserRouter } from "react-router-dom";
+import FetchController from "./FetchController";
 import NavBarController from "./nav/NavBarController";
 import NavContent from "./nav/NavContent";
 import './main.css'
-import FetchController from "./FetchController";
-import Fetch from "./Fetch";
 
 export default function Main() {
     return (
         <BrowserRouter>
             <div className="container">
-                <NavBarController />
+                <NavBarController/>
                 <div className="nav-content">
                     <NavContent />
                 </div>
-                <FetchController><Fetch/></FetchController>
+                <FetchController />
             </div>
         </BrowserRouter>
     )

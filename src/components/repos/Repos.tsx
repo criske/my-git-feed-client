@@ -1,10 +1,12 @@
 import { useContext, useEffect } from "react"
-import { StateContext } from "../../state/StateContext"
+import { ActionType } from "../../state/State";
+import { StateContext } from "../../state/StateContext";
+import { History } from 'history';
 
-export default function Assignments({ location }) {
+export default function Assignments({ location } : History) {
     const { state, actions } = useContext(StateContext);
     useEffect(() => {
-        actions.fetch("repos", [state.provider.name], "repos")
+        actions.fetch("repos", ActionType.REPOS, [state.provider.name])
     }, [location.key, state.provider.name])
     return (<div>
         <h4>Owned Repositories</h4>

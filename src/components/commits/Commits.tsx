@@ -1,10 +1,12 @@
 import { useContext, useEffect } from "react"
-import { StateContext } from "../../state/StateContext"
+import { ActionType } from "../../state/State";
+import { StateContext } from "../../state/StateContext";
+import { History } from 'history';
 
-export default function Commits({ location }) {
+export default function Commits({ location }: History) {
     const { state, actions } = useContext(StateContext);
     useEffect(() => {
-        actions.fetch("commits", [state.provider.name], "commits")
+        actions.fetch("commits", ActionType.COMMITS, [state.provider.name])
     }, [location.key, state.provider.name])
     return (<div>
         <h4>Commits</h4>
