@@ -4,7 +4,7 @@ import Commits from "../commits/Commits";
 import Home from "../home/Home";
 import Repos from "../repos/Repos";
 
-const routes = [
+const routes: any = [
     {
         path: "/",
         component: Home
@@ -25,7 +25,7 @@ const routes = [
 
 export default function NavContent() {
     return (<Switch>
-        {routes.map((route, i) => (
+        {routes.map((route: any, i: number) => (
             <Route
                 exact
                 key={i}

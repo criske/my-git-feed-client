@@ -8,11 +8,11 @@ export default function Main() {
     return (
         <BrowserRouter>
             <div className="container">
-                <NavBarController />
+                <NavBarController/>
                 <div className="nav-content">
                     <NavContent />
                 </div>
-                <FetchController/>
+                <FetchController />
             </div>
         </BrowserRouter>
     )

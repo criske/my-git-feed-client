@@ -1,10 +1,11 @@
 import { Fragment } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import './navBar.css'
+import { NavBarProps } from "./NavBarProps";
 
-export default function NavBar({ hasRounter, provider, onSelect }) {
+export default function NavBar({ hasRounter , provider, onSelect } : NavBarProps) {
     const RouterWrap = hasRounter ? BrowserRouter : Fragment;
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         onSelect(e.target.value);
     }
     return (
@@ -40,17 +41,4 @@ export default function NavBar({ hasRounter, provider, onSelect }) {
             </nav>
         </RouterWrap>
     );
-}
-
-NavBar.defaultProps = {
-    hasRounter: false,
-    provider: {
-        name: "",
-        user: {
-            name: '',
-            avatar: null,
-            link: ''
-        },
-    },
-    onSelect: (provider) => { }
 }
