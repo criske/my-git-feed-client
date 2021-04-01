@@ -6,7 +6,8 @@ export enum ActionType {
     ASSIGNMENTS = 'assignments',
     COMMITS = 'commits',
     REPOS = 'repos',
-    API_READY = 'api_ready'
+    READY = 'ready',
+    NONE = ""
 }
 
 export interface Action {
@@ -23,7 +24,7 @@ export interface FetchState {
 export interface FetchCallState {
     readonly name?: string | null;
     args: ReadonlyArray<string>;
-    readonly stateActionType?: ActionType | null;
+    readonly stateActionType: ActionType;
 }
 
 export interface ProviderState {
@@ -66,7 +67,7 @@ export const INITIAL_STATE: State = {
         call: {
             name: null,
             args: [],
-            stateActionType: null  
+            stateActionType: ActionType.NONE  
         }
     },
     ready: false,

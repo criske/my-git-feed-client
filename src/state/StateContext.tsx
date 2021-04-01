@@ -8,24 +8,21 @@ interface Actions {
     loading: (isLoading: boolean) => void;
     fetch: (fetchType: FetchTypes, args: [any], actionType: ActionType) => void;
     select: (page: Pages) => void;
-    user: (content: any) => void;
-    assignments: (content: any) => void;
-    commits: (content: any) => void;
-    repos: (content: any) => void;
-    ready: () => void;
+    dispatch: (action: ActionType, payload: any) => void
 }
 
-export const StateContext = createContext<{ state: State; actions: Actions }>({
+export interface StateContext {
+    state: State;
+    actions: Actions;
+}
+
+export const StateContext = createContext<StateContext>({
     state: INITIAL_STATE,
     actions: {
         loading: () => { },
         fetch: () => { },
         select: () => { },
-        assignments: () => { },
-        commits: () => { },
-        repos: () => { },
-        ready: () => { },
-        user: () => { }
+        dispatch: () => { }
     }
 });
 
@@ -33,7 +30,7 @@ export const StateProvider: React.FC = ({ children }) => {
 
     const stateReducer: StateReducer = (state, action) => {
         switch (action.type) {
-            case ActionType.API_READY: {
+            case ActionType.READY: {
                 const updated: State = { ...state, ready: true };
                 return updated
             }
@@ -92,11 +89,9 @@ export const StateProvider: React.FC = ({ children }) => {
                 }
             })
         },
-        assignments: (content) => dispatch({ type: ActionType.ASSIGNMENTS, payload: content }),
-        commits: (content) => dispatch({ type: ActionType.COMMITS, payload: content }),
-        repos: (content) => dispatch({ type: ActionType.REPOS, payload: content }),
-        ready: () => dispatch({ type: ActionType.API_READY }),
-        user: (content) => dispatch({ type: ActionType.USER, payload: content })
+        dispatch: (action, payload) => {
+            dispatch({ type: action, payload });
+        }
     }
     return (<StateContext.Provider value={{ state, actions }}> { children} </StateContext.Provider>);
 };

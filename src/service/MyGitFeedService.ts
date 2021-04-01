@@ -1,9 +1,12 @@
 import { Provider } from "../state/State";
 
 export interface FetchResult {
-    request: Promise<object>;
-    cancel: () => void;
+    request: Promise<Object>;
+    cancel: CancelHandler;
 }
+
+export type CancelHandler = () => void;
+
 export type FetchRequest = (path: String) => FetchResult
 export type ProviderFetchRequest = (provider: Provider) => FetchResult
 
@@ -16,7 +19,7 @@ export type FetchService = { [key: string]: ProviderFetchRequest | (() => FetchR
 const BASE_API = 'https://my-git-feed.herokuapp.com';
 //const BASE_API = 'http://localhost:8080';
 
-const fakeServer: { [key: string]: () => object } = {
+const fakeServer: { [key: string]: () => Object } = {
     '/check/ping': () => ({}),
 
     '/api/github/me': () => ({
