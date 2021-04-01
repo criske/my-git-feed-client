@@ -1,11 +1,12 @@
-import React from 'react';
-import { StateProvider } from './state/StateContext.tsx';
+import { StateProvider } from './state/StateContext';
 import StartUp from './components/startup/StartUp';
-
+import { FetchProvider } from './components/FetchContext';
 function App() {
     return (
         <StateProvider>
-            <StartUp />
+            <FetchProvider>
+                <StartUp />
+            </FetchProvider>
         </StateProvider>
     );
 }

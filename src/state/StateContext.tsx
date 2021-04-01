@@ -6,7 +6,7 @@ type StateReducer = (state: State, action: Action) => State;
 
 interface Actions {
     loading: (isLoading: boolean) => void;
-    fetch: (fetchType: FetchTypes, args: [any], actionType: ActionType) => void;
+    fetch: (fetchType: FetchTypes, actionType: ActionType, args?: [any]) => void;
     select: (page: Pages) => void;
     dispatch: (action: ActionType, payload: any) => void
 }
@@ -79,7 +79,7 @@ export const StateProvider: React.FC = ({ children }) => {
             dispatch({ type: ActionType.LOADING, payload: isLoading })
         },
         select: (page) => dispatch({ type: ActionType.SELECTED, payload: page }),
-        fetch: function (fetchType, fetchArgs, actionType) {
+        fetch: (fetchType, actionType, fetchArgs) => {
             dispatch({
                 type: ActionType.FETCH,
                 payload: {

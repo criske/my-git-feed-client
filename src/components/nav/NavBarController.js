@@ -7,7 +7,7 @@ export default function NavBarController({ hasRounter }) {
     const { state, actions } = useContext(StateContext);
     const [provider, setProvider] = useState(state.provider.name);
     useEffect(() => {
-        actions.fetch("user", [provider], ActionType.USER);
+        actions.fetch("user", ActionType.USER, [provider]);
     }, [provider])
     return (<NavBar provider={state.provider} onSelect={setProvider} hasRounter={hasRounter} />)
 }

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { FetchContext } from './FetchContext';
 import { CSSTransition } from 'react-transition-group';
 import './fetch.css';
 
+
 const FetchTest = () => {
     const [retry, setRetry] = useState(0);
-    const [loadingState, setLoadingState] = useState({
+    const [loadingState, setLoadingState] = useState<any>({
         isLoading: true,
         error: null
     })
@@ -15,12 +17,12 @@ const FetchTest = () => {
             setLoadingState({ isLoading: false, error: "Error!!!" });
         }, 5000);
     }, [retry]);
-    return (<Fetch isLoading={loadingState.isLoading} error={loadingState.error} onRetry={onRetry}></Fetch>)
+    return (<Fetch isLoading={loadingState.isLoading} error={loadingState.error} onRetry={onRetry} onCancel ={() => {}}></Fetch>)
 }
 
 export { FetchTest };
 
-const Error = ({ error, onRetry, onClose }) => (
+const Error = ({ error, onRetry, onClose } : any) => (
     <div className="error-box">
         <svg onClick={onClose} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -34,7 +36,7 @@ const Error = ({ error, onRetry, onClose }) => (
 
 const Spinner = () => (<div className="loading-spinner" />);
 
-export default function Fetch({ isLoading, error, onRetry }) {
+export default function Fetch({ isLoading, error, onRetry }: FetchContext) {
     const [showMessage, setShowMessage] = useState(!isLoading && (error !== null));
     const onRetryAfterAnim = () => setShowMessage(false);
     const [open, setOpen] = useState(false);
