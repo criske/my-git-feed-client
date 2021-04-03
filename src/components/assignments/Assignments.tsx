@@ -9,7 +9,7 @@ export default function Assignments({ location } : History) {
         actions.fetch("assignments", ActionType.ASSIGNMENTS, [state.provider.name]);
     }, [location.key, state.provider.name])
     return (<div>
-        <h4>Assignments</h4>
+        <h2>Assignments</h2>
         <p>{JSON.stringify(state.pages.assignments)}</p>
     </div>)
 }

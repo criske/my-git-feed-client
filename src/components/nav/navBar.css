@@ -7,7 +7,9 @@ nav {
     position: fixed;
     gap: 2rem;
     padding: 0 var(--side-gap) 0 var(--side-gap);
-    background-color: var(--clr-primary-100);
+    background-color: var(--clr-primary-500);
+    color: white;
+    z-index: 999;
 }
 
 ul {
@@ -17,6 +19,31 @@ ul {
     height: 100%;
     align-items: center;
     padding: 0;
+}
+
+ul > li > a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+ul > li {
+    height: 100%;
+    min-width: 5rem;
+    padding: 0.2rem;
+}
+
+ul > li:hover {
+    background-color: var(--clr-secondary-100);
+}
+
+ul > li > a:hover {
+    color: var(--clr-primary-900);
 }
 
 .user {
@@ -31,7 +58,8 @@ ul {
     grid-template-rows: auto;
 }
 
-.user > img, svg {
+.user > img,
+svg {
     align-self: center;
     height: 3rem;
     width: 3rem;
@@ -39,11 +67,12 @@ ul {
     grid-column: 1;
     grid-row: 1 / span 2;
     margin-right: 0.5rem;
+    border: 0.18rem solid var(--clr-primary-100);
 }
 
 .user > svg {
     padding: 0.2rem;
-    background-color: #F24302;
+    background-color: #f24302;
 }
 
 .user > div {
@@ -55,13 +84,13 @@ ul {
     align-self: end;
 }
 
-.user > a {
+/* .user > a {
     grid-column: 2;
     grid-row: 2;
     align-self: top;
     font-size: 0.6rem;
     height: 1rem;
-}
+} */
 
 .providers {
     height: 100%;

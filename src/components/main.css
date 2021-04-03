@@ -10,7 +10,7 @@
 }
 
 .nav-content {
-    margin: calc(var(--nav-height) + 1rem) var(--side-gap) 1rem var(--side-gap);
+    margin: calc(var(--nav-height) + 3rem) var(--side-gap) 1rem var(--side-gap);
     height: 100%;
 }
 

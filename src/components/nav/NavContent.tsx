@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router";
 import Assignments from "../assignments/Assignments";
 import Commits from "../commits/Commits";
 import Home from "../home/Home";
-import Repos from "../repos/Repos";
+import ReposController from "../repos/ReposController";
 
 const routes: any = [
     {
@@ -15,7 +15,7 @@ const routes: any = [
     },
     {
         path: "/repos",
-        component: Repos
+        component: ReposController
     },
     {
         path: "/assignments",

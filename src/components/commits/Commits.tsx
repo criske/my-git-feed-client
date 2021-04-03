@@ -9,7 +9,7 @@ export default function Commits({ location }: History) {
         actions.fetch("commits", ActionType.COMMITS, [state.provider.name])
     }, [location.key, state.provider.name])
     return (<div>
-        <h4>Commits</h4>
+        <h2>Commits</h2>
         <p>{JSON.stringify(state.pages.commits)}</p>
     </div>)
 }

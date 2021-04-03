@@ -1,20 +1,20 @@
 :root {
-    --nav-height: 4rem;
+    --nav-height: 5rem;
     --side-gap: 3rem;
     --border-radius: 0.5em;
 
-    --clr-primary-100: #E7E7EF;
-    --clr-primary-200: #B6B6CE;
-    --clr-primary-300: #8585AD;
-    --clr-primary-400: #5A5A87;
+    --clr-primary-100: #e3e3eb;
+    --clr-primary-200: #b6b6ce;
+    --clr-primary-300: #8585ad;
+    --clr-primary-400: #5a5a87;
     --clr-primary-500: #404060;
     --clr-primary-900: #0d0d13;
 
-    --clr-secondary-100: #F1E6EA;
-    --clr-secondary-200: #D6B4C1 ;
-    --clr-secondary-300: #BA8298;
+    --clr-secondary-100: #f1e6ea;
+    --clr-secondary-200: #d6b4c1;
+    --clr-secondary-300: #ba8298;
     --clr-secondary-400: #995470;
-    --clr-secondary-500: #703E52;
+    --clr-secondary-500: #703e52;
 
     --clr-accent-500: #cc5a71;
 
@@ -23,32 +23,26 @@
     --clr-highlight-500: #c89b7b;
 }
 
+@media only screen and (max-width: 768px) {
+    :root {
+        --side-gap: 1.5em;
+    }
+}
+
 body {
     margin: 0;
     overflow: hidden;
-    
 
     /* font */
-    font-family: 'Lato', sans-serif;
-    color:var(--clr-primary-900);   
-    line-height: 1.5; 
+    font-family: "Lato", sans-serif;
+    color: var(--clr-primary-900);
+    line-height: 1.5;
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
     /* bg */
-    background: var(--clr-primary-100); /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to bottom,
-        var(--clr-primary-100),
-        #FFFFFF
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to bottom,
-        var(--clr-primary-100),
-        #FFFFFF
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    /* background: var(--clr-primary-100); */
 }
 
 #root {
@@ -67,6 +61,37 @@ code {
 
 a:link {
     text-decoration: none;
+}
+
+h2 {
+    display: block;
+    padding-bottom: 1.5rem;
+    position: relative;
+    margin-bottom: 2rem;
+    letter-spacing: 0.25rem;
+    border: 4px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #C43F59, transparent);
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+}
+
+h2::after {
+    content: " ";
+    /* border-bottom: 0.3rem solid var(--clr-secondary-500); */
+    border-bottom-width: 0.2rem;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0)) 1 100%;
+    width: 40%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+h2::before {
+    content: " ";
+    background-color: var(--clr-secondary-400);
 }
 
 * {

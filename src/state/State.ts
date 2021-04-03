@@ -42,7 +42,7 @@ export interface PagesState {
     readonly home: Object;
     readonly assignments: Object;
     readonly commits: Object;
-    readonly repos: Object
+    readonly repos: any
 }
 
 export interface State {
