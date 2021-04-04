@@ -1,10 +1,7 @@
 import { useMemo } from 'react';
+import { formatDate } from '../../utils';
 import './repos.css';
 import { RepoType } from './RepoType';
-
-function formatDate(dateStr: string): string {
-    return new Date(dateStr).toLocaleString();
-}
 
 export default function Repo(repo: RepoType) {
     const createdAt: String = useMemo<String>(() => formatDate(repo.createdAt), [repo.createdAt]);

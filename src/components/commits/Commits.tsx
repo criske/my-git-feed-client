@@ -1,15 +1,11 @@
-import { useContext, useEffect } from "react"
-import { ActionType } from "../../state/State";
-import { StateContext } from "../../state/StateContext";
-import { History } from 'history';
+import Commit from './Commit'
+import { CommitType } from './CommitType';
 
-export default function Commits({ location }: History) {
-    const { state, actions } = useContext(StateContext);
-    useEffect(() => {
-        actions.fetch("commits", ActionType.COMMITS, [state.provider.name])
-    }, [location.key, state.provider.name])
+export default function Commits({ commits }: {commits : CommitType[]}) {
     return (<div>
         <h2>Commits</h2>
-        <p>{JSON.stringify(state.pages.commits)}</p>
+        <div className="grid-container">
+            {commits.map((c: CommitType, i: number) => <Commit key={c.sha} {...c} />)}
+        </div>
     </div>)
 }
