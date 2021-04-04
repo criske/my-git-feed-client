@@ -1,6 +1,6 @@
 :root {
     --nav-height: 5rem;
-    --side-gap: 3rem;
+    --side-gap: 8rem;
     --border-radius: 0.5em;
 
     --clr-primary-100: #e3e3eb;
@@ -36,13 +36,18 @@ body {
     /* font */
     font-family: "Lato", sans-serif;
     color: var(--clr-primary-900);
-    line-height: 1.5;
+    /* line-height: 1.5; */
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
     /* bg */
     /* background: var(--clr-primary-100); */
+}
+
+p {
+    text-indent: 2em;
+    line-height: 1.8;
 }
 
 #root {
