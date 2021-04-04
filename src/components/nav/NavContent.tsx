@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router";
 import AssignmentsController from "../assignments/AssignmentsController";
 import CommitsController from "../commits/CommitsController";
 import Home from "../home/Home";
+import NotFound from "../notfound/NotFound";
 import ReposController from "../repos/ReposController";
 
 const routes: any = [
@@ -35,5 +36,6 @@ export default function NavContent() {
                 )}
             />
         ))}
+        <Route component={NotFound} />
     </Switch>)
 }
