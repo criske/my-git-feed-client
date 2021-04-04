@@ -1,0 +1,28 @@
+.under-construction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    opacity: 0.1;
+    pointer-events: none;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.under-construction > span {
+    color: var(--clr-secondary-500);
+    font-size: 3rem;
+    font-weight: 600;
+    transform: rotate(25deg);
+    letter-spacing: 1rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 560px) {
+    .under-construction > span {
+        font-size: 2.5rem;
+    }
+}
+

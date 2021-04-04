@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router";
 import AssignmentsController from "../assignments/AssignmentsController";
 import CommitsController from "../commits/CommitsController";
 import Home from "../home/Home";
-import NotFound from "../notfound/NotFound";
+import { NotFound } from "../misc";
 import ReposController from "../repos/ReposController";
 
 const routes: any = [
@@ -26,7 +26,7 @@ const routes: any = [
 
 export default function NavContent() {
     return (
-        <div style={{minHeight: '72vh', width: '100%'}}>
+        <div style={{ minHeight: '72vh', width: '100%' }}>
             <Switch>
                 {routes.map((route: any, i: number) => (
                     <Route
