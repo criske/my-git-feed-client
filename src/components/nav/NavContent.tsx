@@ -25,17 +25,21 @@ const routes: any = [
 ]
 
 export default function NavContent() {
-    return (<Switch>
-        {routes.map((route: any, i: number) => (
-            <Route
-                exact
-                key={i}
-                path={route.path}
-                render={props => (
-                    <route.component {...props} routes={route.routes} />
-                )}
-            />
-        ))}
-        <Route component={NotFound} />
-    </Switch>)
+    return (
+        <div style={{minHeight: '72vh', width: '100%'}}>
+            <Switch>
+                {routes.map((route: any, i: number) => (
+                    <Route
+                        exact
+                        key={i}
+                        path={route.path}
+                        render={props => (
+                            <route.component {...props} routes={route.routes} />
+                        )}
+                    />
+                ))}
+                <Route component={NotFound} />
+            </Switch>
+        </div>
+    )
 }

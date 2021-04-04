@@ -3,6 +3,7 @@ import FetchController from "./FetchController";
 import NavBarController from "./nav/NavBarController";
 import NavContent from "./nav/NavContent";
 import './main.css'
+import Footer from "./footer";
 
 export default function Main() {
     return (
@@ -11,8 +12,10 @@ export default function Main() {
                 <NavBarController/>
                 <div className="nav-content">
                     <NavContent />
+                    <Footer/>
                 </div>
                 <FetchController />
+               
             </div>
         </BrowserRouter>
     )

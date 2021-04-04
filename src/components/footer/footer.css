@@ -1,0 +1,10 @@
+footer{
+    height: 3rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-items: end;
+    font-size: small;
+    padding: 0.5rem;
+    color: var(--clr-primary-400)
+}
