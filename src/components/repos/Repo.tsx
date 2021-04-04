@@ -10,7 +10,7 @@ export default function Repo(repo: RepoType) {
     const createdAt: String = useMemo<String>(() => formatDate(repo.createdAt), [repo.createdAt]);
     const updatedAt: String = useMemo(() => formatDate(repo.updatedAt), [repo.updatedAt])
     return (
-        <div className="repo">
+        <div className="card repo">
             <div>
                 <a href={repo.url}>{repo.name}</a>
                 <div>{repo.language}</div>

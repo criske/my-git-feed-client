@@ -1,15 +1,11 @@
-import { useContext, useEffect } from "react"
-import { ActionType } from "../../state/State";
-import { StateContext } from "../../state/StateContext"
-import { History } from 'history';
+import { AssignmentType } from './AssignmentType'
+import Assignment from './Assignment';
 
-export default function Assignments({ location } : History) {
-    const { state, actions } = useContext(StateContext);
-    useEffect(() => {
-        actions.fetch("assignments", ActionType.ASSIGNMENTS, [state.provider.name]);
-    }, [location.key, state.provider.name])
+export default function Assignments({ assignments }: { assignments: AssignmentType[] }) {
     return (<div>
         <h2>Assignments</h2>
-        <p>{JSON.stringify(state.pages.assignments)}</p>
+        <div className="grid-container">
+            {assignments.map((a: AssignmentType, i: number) => <Assignment key={i} {...a} />)}
+        </div>
     </div>)
 }

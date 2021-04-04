@@ -94,6 +94,38 @@ h2::before {
     background-color: var(--clr-secondary-400);
 }
 
+@media only screen and (max-width: 768px) {
+    .card {
+        --card-width: 100%;
+    }
+}
+@media only screen and (min-width: 769px) {
+    .card {
+        --card-width: calc(var(--card-size) + 7rem);
+        --card-height: var(--card-size);
+    }
+}
+.card {
+    --card-size: 15rem;
+
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--border-radius);
+    border: 1px solid darkgray;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: 0.8rem;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    height: 100%;
+    width: 100%;
+}
+
 * {
     box-sizing: border-box;
     /* outline: 0.001rem solid yellowgreen; */

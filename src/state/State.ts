@@ -40,8 +40,8 @@ export interface ProviderState {
 export interface PagesState {
     readonly selected: Pages;
     readonly home: Object;
-    readonly assignments: Object;
-    readonly commits: Object;
+    readonly assignments: any;
+    readonly commits: any;
     readonly repos: any
 }
 
