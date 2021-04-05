@@ -25,15 +25,21 @@
 
 @media only screen and (max-width: 768px) {
     :root {
-        --side-gap: 1.5em;
+        --side-gap: 0.5em;
     }
 }
 
+html,
 body {
-    margin: 0;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
-    height: 100vh;
+    /* for mobile */
+    position: relative;
+    margin: 0;
+}
 
+body {
     /* font */
     font-family: "Lato", sans-serif;
     color: var(--clr-primary-900);
@@ -75,12 +81,25 @@ h2 {
     position: relative;
     margin-bottom: 2rem;
     letter-spacing: 0.25rem;
-    border: 4px solid;
+    border: .2em solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #C43F59, transparent);
+    border-image-source: linear-gradient(to right, #c43f59, transparent);
     border-top: transparent;
     border-right: transparent;
     border-left: transparent;
+}
+
+@media only screen and (max-width: 768px) {
+    h2 {
+        margin-bottom: 1rem;
+        padding-bottom: 0.7rem;
+        border: .1em solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to right, #c43f59, transparent);
+        border-top: transparent;
+        border-right: transparent;
+        border-left: transparent;
+    }
 }
 
 h2::after {
@@ -115,7 +134,7 @@ h2::before {
     --card-size: 15rem;
 
     width: var(--card-width);
-    height: var(--card-height);
+    height: 15em;
     border-radius: var(--border-radius);
     border: 1px solid darkgray;
     display: flex;
@@ -130,6 +149,14 @@ h2::before {
     gap: 1.5rem;
     height: 100%;
     width: 100%;
+}
+@media only screen and (max-width: 768px) {
+    .grid-container {
+        gap: 0.1rem;
+    }
+    .card {
+        border-radius: 0.2rem;
+    }
 }
 
 * {

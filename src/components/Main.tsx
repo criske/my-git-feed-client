@@ -8,15 +8,16 @@ import Footer from "./footer";
 export default function Main() {
     return (
         <BrowserRouter>
-            <div className="container">
-                <NavBarController/>
-                <div className="nav-content">
+            <header>
+                <NavBarController />
+            </header>
+            <main>
+                <section>
                     <NavContent />
-                    <Footer/>
-                </div>
-                <FetchController />
-               
-            </div>
+                </section>
+                <Footer />
+            </main>
+            <FetchController />
         </BrowserRouter>
     )
 }
