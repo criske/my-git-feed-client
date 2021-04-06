@@ -4,16 +4,21 @@
     flex-direction: column;
     flex-wrap: nowrap;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#root::-webkit-scrollbar {
+    display: none;
+}
+
 
 header {
     height: var(--nav-height);
     width: 100%;
-    position: fixed;
-    z-index: 999;
     background-color: var(--clr-primary-500);
-    display: flex;
 }
 
 main {
@@ -23,22 +28,11 @@ main {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
-    padding-top: calc(var(--nav-height) + 0.01rem);
-
-    overflow-y: auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
 }
 
-header,
 main {
     padding-left: var(--side-gap);
     padding-right: var(--side-gap);
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-main::-webkit-scrollbar {
-    display: none;
 }
 
 section {
