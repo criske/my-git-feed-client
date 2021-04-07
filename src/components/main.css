@@ -16,6 +16,7 @@
 
 
 header {
+    flex-shrink: 0;
     height: var(--nav-height);
     width: 100%;
     background-color: var(--clr-primary-500);
