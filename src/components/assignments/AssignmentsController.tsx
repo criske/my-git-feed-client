@@ -13,6 +13,7 @@ export default function AssignmentsController({ location }: History) {
     const assignments: AssignmentType[] = (state.pages.assignments.entries || []).map((a: any) => ({
         title: a.title,
         body: a.body,
+        url: a.url,
         repo: {
             name: a.repo.fullName,
             url: a.repo.url

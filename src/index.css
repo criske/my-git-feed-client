@@ -16,7 +16,7 @@
     --clr-secondary-400: #995470;
     --clr-secondary-500: #703e52;
 
-    --clr-accent-500: #cc5a71;
+    --clr-accent-500: #F24302;
 
     --clr-highlight-inv-500: #f0f757;
 
@@ -53,7 +53,6 @@ body {
 }
 
 p {
-    text-indent: 2em;
     line-height: 1.8;
 }
 
@@ -146,13 +145,13 @@ h2::before {
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1.5em;
     height: 100%;
     width: 100%;
 }
 @media only screen and (max-width: 768px) {
     .grid-container {
-        gap: 0.1rem;
+        gap: 0.2em;
     }
     .card {
         border-radius: 0.2rem;

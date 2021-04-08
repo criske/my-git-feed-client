@@ -6,5 +6,6 @@ export interface CardType {
     body: ReactNode;
     header?: ReactNode;
     footer?: ReactNode;
-    children?: [];
+    hideDivider?: boolean;
+    className?: string; 
 }

@@ -1,53 +1,46 @@
-div.repo > div {
-    padding: 0.5em;
+.__repo-relative {
+    position: relative;
 }
 
-/* repo header */
-div.repo > div:nth-child(1) {
-    background-color: var(--clr-primary-100);
-    height: 3.2rem;
-    display: grid;
-    grid-template-columns: 0.75fr 0.25fr;
-    grid-template-rows: 2;
-    color: var(--clr-primary-900);
+.__repo-footer {
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
 
-/* repo header title */
-div.repo > div:nth-child(1) > a {
-    grid-column: 1;
-    grid-row: 1 / span 2;
+.__repo-language-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-accent-500);
+    color: white;
+    padding: 0 0.5em;
+    border-radius: 0 0.5em;
+    font-size: 0.7rem;
+    min-width: 4em;
+    height: 4em;
+    flex-grow: 0;
+    position: absolute;
+    left:0;
+    bottom: 0;
 }
 
-/* repo header stars */
-div.repo > div:nth-child(1) > div:nth-child(1) {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: center;
+.__repo-stars {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    gap: 0.3em;
+    right: 0;
+    top: 0.6em;
+}
+.__repo-stars > svg {
+    width: 1.5em;
+    stroke: var(--clr-accent-500);
+    fill: var(--clr-highlight-inv-500);
 }
 
-/* repo header language */
-div.repo > div:nth-child(1) > div:nth-child(2) {
-    grid-column: 2;
-    grid-row: 2;
-}
-
-/* repo body*/
-div.repo > div:nth-child(2) {
-    background-color: white;
-    flex-grow: 1;
-}
-
-/* repo footer*/
-div.repo > div:nth-child(3) {
-    background-color: var(--clr-primary-100);
-}
-
-@media only screen and (max-width: 768px) {
-    div.repo {
-        --repo-width: 100%;
-    }
-}
-
-.repo {
-    font-size: 0.8rem;
+.__repo-stars > span {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    font-weight: bold;
 }

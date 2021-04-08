@@ -55,7 +55,7 @@ nav > ul {
     }
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape) and (max-width: 768px) {
     :root {
         --nav-height: 3.2rem;
     }

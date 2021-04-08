@@ -6,18 +6,10 @@ import { Card } from './components/misc/card';
 function App() {
     return (
         <StateProvider>
-            {/* <FetchProvider>
+            <FetchProvider>
                 <StartUp />
                 <UnderConstruction/>
-            </FetchProvider> */}
-            <Card
-                title="Card title"
-                subtitle = "Card subtitle"
-                header={<h3>Custom header</h3>}
-                body={<div>Hello World</div>}
-                footer = {<>My footer</>}
-            >
-            </Card>
+            </FetchProvider>
         </StateProvider>
     );
 }

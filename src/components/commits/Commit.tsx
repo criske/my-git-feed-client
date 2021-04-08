@@ -1,15 +1,22 @@
 import { CommitType } from "./CommitType";
 import { formatDate } from '../../utils';
+import { Card } from "../misc/card";
+import MarkDownIt from 'markdown-it';
+import { useMemo } from "react";
 
 export default function Commit(commit: CommitType) {
+    const md = useMemo(() => MarkDownIt(), []);
+    const htmlBody = useMemo(() => {
+        const parsed = md.render(commit.message || '');
+        return parsed;
+    }, [commit.message]);
     return (
-        <div className="card">
-            <div>
-                <div>{commit.repo.name}</div>
-                <div> {commit.sha} </div>
-                <div> {formatDate(commit.date)}</div>
-            </div>
-            <div>{commit.message || "No message"}</div>
-        </div>
+        <Card
+            title={commit.repo.name}
+            subtitle={commit.sha}
+            body={<div dangerouslySetInnerHTML={{ __html: htmlBody }}></div>}
+            footer={formatDate(commit.date)}
+        >
+        </Card>
     )
 }
