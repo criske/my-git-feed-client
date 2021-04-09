@@ -74,50 +74,6 @@ a:link {
     text-decoration: none;
 }
 
-h2 {
-    display: block;
-    padding-bottom: 1.5rem;
-    position: relative;
-    margin-bottom: 2rem;
-    letter-spacing: 0.25rem;
-    border: .2em solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #c43f59, transparent);
-    border-top: transparent;
-    border-right: transparent;
-    border-left: transparent;
-}
-
-@media only screen and (max-width: 768px) {
-    h2 {
-        margin-bottom: 1rem;
-        padding-bottom: 0.7rem;
-        border: .1em solid;
-        border-image-slice: 1;
-        border-image-source: linear-gradient(to right, #c43f59, transparent);
-        border-top: transparent;
-        border-right: transparent;
-        border-left: transparent;
-    }
-}
-
-h2::after {
-    content: " ";
-    /* border-bottom: 0.3rem solid var(--clr-secondary-500); */
-    border-bottom-width: 0.2rem;
-    border-bottom-style: solid;
-    border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0)) 1 100%;
-    width: 40%;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-}
-
-h2::before {
-    content: " ";
-    background-color: var(--clr-secondary-400);
-}
-
 @media only screen and (max-width: 768px) {
     .card {
         --card-width: 100%;
