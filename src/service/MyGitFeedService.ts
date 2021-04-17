@@ -8,7 +8,7 @@ export interface FetchResult {
 export type CancelHandler = () => void;
 
 export type FetchRequest = (path: String) => FetchResult
-export type ProviderFetchRequest = (provider: Provider) => FetchResult
+export type ProviderFetchRequest = (provider: Provider, page?: number) => FetchResult
 
 export type FetchTypes = 'ping' | 'user' | 'assignments' | 'commits' | 'repos'
 
@@ -94,8 +94,8 @@ const jsonFetch: (path: String) => FetchResult = (path) => {
 const service: FetchService = {
     ping: () => jsonFetch('/check/ping'),
     user: (provider: Provider) => jsonFetch(`/api/${provider}/me`),
-    assignments: (provider: Provider) => jsonFetch(`/api/${provider}/assignments`),
-    commits: (provider: Provider) => jsonFetch(`/api/${provider}/commits`),
-    repos: (provider: Provider) => jsonFetch(`/api/${provider}/repos`)
+    assignments: (provider: Provider, page?: number) => jsonFetch(`/api/${provider}/assignments?page=${page || 1}`),
+    commits: (provider: Provider, page?: number) => jsonFetch(`/api/${provider}/commits?page=${page || 1}`),
+    repos: (provider: Provider, page?: number) => jsonFetch(`/api/${provider}/repos?page=${page || 1}`)
 }
 export default service

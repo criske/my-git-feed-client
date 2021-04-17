@@ -6,7 +6,9 @@ import { useState } from "react";
 function Pages(paging: { current: number, max: number, onSelect: (page: number) => void }) {
 
     const onClick = (page: number) => () => {
-        paging.onSelect(page);
+        if(page >= 1 && page <= paging.max){
+            paging.onSelect(page);
+        } 
     }
 
     return (<div className="__heading-pages">
@@ -49,11 +51,12 @@ export function HeadingTest() {
 }
 
 export default function Heading<T>(heading: HeadingType<T>) {
+    const showPaging = heading.paging ? heading.paging.max > 1 : false;
     return (
         <div className="__heading-container">
             <h2>{heading.title}</h2>
             {heading.filter && <div className="__heading-filter">Filter</div>}
-            {heading.paging && <Pages {...heading.paging} />}
+            { showPaging ? heading.paging && <Pages {...heading.paging} /> : <></>}
         </div>
     );
 }

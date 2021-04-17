@@ -43,7 +43,7 @@ export const FetchProvider: React.FC = ({ children }) => {
             actions.loading(true);
             setErr(null);
             const remoteCall: FetchResult = service[fetchCallName]
-                .call<null, any, FetchResult>(null, state.fetch.call.args);
+                .apply<null, any, FetchResult>(null, state.fetch.call.args);
             remoteCall
                 .request
                 .then((result) => {

@@ -1,15 +1,18 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ActionType } from "../../state/State";
 import { StateContext } from "../../state/StateContext";
 import { History } from 'history';
 import { RepoType } from "./RepoType";
 import Repos from "./Repos";
+import { PagingType } from "../misc/heading/PagingType";
 
 export default function ReposController({ location }: History) {
     const { state, actions } = useContext(StateContext);
+    const [page, setPage] = useState(1);
+
     useEffect(() => {
-        actions.fetch("repos", ActionType.REPOS, [state.provider.name])
-    }, [location.key, state.provider.name])
+        actions.fetch("repos", ActionType.REPOS, [state.provider.name, page])
+    }, [location.key, state.provider.name, page])
     const entries = state.pages.repos.entries || [];
     const repos: RepoType[] = entries.map((r: any) => ({
         name: r.simple.name,
@@ -21,5 +24,10 @@ export default function ReposController({ location }: History) {
         updatedAt: r.updatedAt,
         stars: r.stars,
     }));
-    return (<Repos repos = {repos}></Repos>);
+    const paging: PagingType = {
+        current: state.pages.repos.paging.current,
+        max: state.pages.repos.paging.max,
+        onSelect: setPage
+    }
+    return (<Repos repos={repos} paging={paging}></Repos>);
 }

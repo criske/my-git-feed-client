@@ -9,15 +9,15 @@
     border-top: transparent;
     border-right: transparent;
     border-left: transparent;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
 
 }
 
 .__heading-container h2 {
     flex-grow: 1;
     display: block;
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.25em;
 }
 
 @media only screen and (max-width: 768px) {
@@ -37,11 +37,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.1em;
 }
 
 .__heading-pages-current {
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
     min-width: 2em;
     text-align: center;
@@ -49,9 +49,11 @@
 
 .__heading-pages-button {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
     width: 3em;
     height: 3em;
-    padding: 0.5em;
+    padding: 0.5em 0.7em;
     fill: var(--clr-secondary-400);
     cursor: pointer;
 }

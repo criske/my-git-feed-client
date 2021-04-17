@@ -12,7 +12,7 @@ export enum ActionType {
 
 export interface Action {
     type: ActionType;
-    payload?: any ;
+    payload?: any;
 }
 
 
@@ -67,7 +67,7 @@ export const INITIAL_STATE: State = {
         call: {
             name: null,
             args: [],
-            stateActionType: ActionType.NONE  
+            stateActionType: ActionType.NONE
         }
     },
     ready: false,
@@ -83,9 +83,18 @@ export const INITIAL_STATE: State = {
     pages: {
         selected: Pages.home,
         home: {},
-        assignments: {},
-        commits: {},
-        repos: {}
+        assignments: {
+            paging: { current: 1, max: 1 },
+            entries: []
+        },
+        commits: {
+            paging: { current: 1, max: 1 },
+            entries: []
+        },
+        repos: {
+            paging: { current: 1, max: 1 },
+            entries: []
+        }
     }
 }
 

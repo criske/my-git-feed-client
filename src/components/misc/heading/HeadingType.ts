@@ -1,3 +1,5 @@
+import { PagingType } from "./PagingType";
+
 export default interface HeadingType<T> {
     title: string,
     filter?: {
@@ -5,9 +7,5 @@ export default interface HeadingType<T> {
         values: [T],
         onSelect: (filter: T) => void
     }
-    paging?: {
-        max: number,
-        current: number,
-        onSelect: (page: number) => void
-    }
+    paging?: PagingType
 }

@@ -6,7 +6,7 @@ type StateReducer = (state: State, action: Action) => State;
 
 interface Actions {
     loading: (isLoading: boolean) => void;
-    fetch: (fetchType: FetchTypes, actionType: ActionType, args?: [any]) => void;
+    fetch: (fetchType: FetchTypes, actionType: ActionType, args?: any[]) => void;
     select: (page: Pages) => void;
     dispatch: (action: ActionType, payload: any) => void
 }
@@ -25,6 +25,15 @@ export const StateContext = createContext<StateContext>({
         dispatch: () => { }
     }
 });
+
+function updatePaging(
+    payloadPaging: { first: number | null, prev: number | null, next: number | null, last: number | null },
+    statePaging: { current: number, max: number }
+): { current: number, max: number } {
+    const max: number = payloadPaging.last !== null ? payloadPaging.last : statePaging.max;
+    const current: number = payloadPaging.prev !== null ? payloadPaging.prev + 1 : 1;
+    return { current, max };
+}
 
 export const StateProvider: React.FC = ({ children }) => {
 
@@ -57,15 +66,39 @@ export const StateProvider: React.FC = ({ children }) => {
                 return updated;
             }
             case ActionType.ASSIGNMENTS: {
-                const updated: State = { ...state, pages: { ...state.pages, assignments: action.payload } };
+                const paging = updatePaging(action.payload.paging, state.pages.assignments.paging);
+                const updated: State = {
+                    ...state, pages:{
+                        ...state.pages, assignments: {
+                            paging,
+                            entries: action.payload.entries || []
+                        }
+                    }
+                };
                 return updated;
             }
             case ActionType.COMMITS: {
-                const updated: State = { ...state, pages: { ...state.pages, commits: action.payload } };
+                const paging = updatePaging(action.payload.paging, state.pages.commits.paging);
+                const updated: State = {
+                    ...state, pages: {
+                        ...state.pages, commits: {
+                            paging,
+                            entries: action.payload.entries || []
+                        }
+                    }
+                };
                 return updated;
             }
             case ActionType.REPOS: {
-                const updated: State = { ...state, pages: { ...state.pages, repos: action.payload } };
+                const paging = updatePaging(action.payload.paging, state.pages.repos.paging);
+                const updated: State = {
+                    ...state, pages:{
+                        ...state.pages, repos: {
+                            paging,
+                            entries: action.payload.entries || []
+                        }
+                    }
+                };
                 return updated;
             }
             default: return state;
