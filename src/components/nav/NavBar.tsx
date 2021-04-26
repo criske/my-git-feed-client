@@ -1,6 +1,5 @@
 import { Fragment, useRef } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
-import { Provider } from "../../state/State";
 import { Select } from "../misc/select";
 import './navBar.css'
 import { NavBarProps } from "./NavBarProps";
@@ -36,7 +35,7 @@ export default function NavBar({ hasRounter, provider, onSelect }: NavBarProps) 
                 </ul>
                 <div className="providers">
                     <Select
-                        items={["Github", "Gitlab", "Bitbucket"].map(i => ({ value: i as Provider, display: i }))}
+                        items={["Github", "Gitlab", "Bitbucket"]}
                         onSelect={onSelect}
                         selected={provider.name}
                     />

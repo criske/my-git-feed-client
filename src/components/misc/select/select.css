@@ -1,9 +1,60 @@
-select {
-    font-size: 1.1rem;
-    padding: .3em 0em;
-    border: 0;
+.__select-container {
+    display: flex;
+    max-width: 6em;
+    flex-direction: column;
+    background-color: white;
 }
 
-select > option {
-   
+.__select-container:hover {
+    cursor: pointer;
+}
+
+
+.__select-menu-header {
+    position: relative;
+    border: 0.02em solid lightgray;
+}
+
+.__select-menu-header::after {
+    --size: 0.3em;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top:var(--size) solid var(--clr-primary-500);
+    top: 50%;
+    right: 5%;
+    pointer-events: none;
+}
+
+.__select-menu {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    background-color: white;
+    border: 0.02em solid lightgray;
+    border-radius: 0.03em;
+}
+
+.__select-menu-anchor {
+    position: relative;
+}
+
+.__select-menu-item {
+    padding: 0em 0.5em;
+}
+
+.__select-menu-item:hover {
+    background-color: var(--clr-primary-100);
+}
+
+.__select-simple-renderer {
+    min-width: 4em;
+    min-height: 1.9em;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    color: black;
 }

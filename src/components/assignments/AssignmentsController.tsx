@@ -38,7 +38,7 @@ export default function AssignmentsController({ location }: History) {
         }
     }
     const filtering: SelectType<string> = {
-        items: ["ALL", "CLOSED", "OPEN"].map(item => ({ value: item, display: item })),
+        items: ["ALL", "CLOSED", "OPEN"],
         selected: filterPage.filter,
         onSelect: (filter) => {
             setFilterPage({ page: 1, filter: filter });
