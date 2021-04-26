@@ -1,0 +1,9 @@
+select {
+    font-size: 1.1rem;
+    padding: .3em 0em;
+    border: 0;
+}
+
+select > option {
+   
+}

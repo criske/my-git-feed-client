@@ -30,7 +30,7 @@ function updatePaging(
     payloadPaging: { first: number | null, prev: number | null, next: number | null, last: number | null },
     statePaging: { current: number, max: number }
 ): { current: number, max: number } {
-    const max: number = payloadPaging.last !== null ? payloadPaging.last : statePaging.max;
+    const max: number = payloadPaging.last !== null ? payloadPaging.last : (payloadPaging.first == null) ? 1 : statePaging.max;
     const current: number = payloadPaging.prev !== null ? payloadPaging.prev + 1 : 1;
     return { current, max };
 }

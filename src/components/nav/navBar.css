@@ -148,9 +148,3 @@ nav > ul > li > a:hover {
     margin-left: auto;
     /* background-color: blueviolet; */
 }
-
-.providers > select {
-    font-size: inherit;
-    padding: 0.2rem;
-    /* background-color: red; */
-}

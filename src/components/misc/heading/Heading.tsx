@@ -1,14 +1,15 @@
 import HeadingType from "./HeadingType";
 import './heading.css';
 import { useState } from "react";
+import { Select } from "../select";
 
 
 function Pages(paging: { current: number, max: number, onSelect: (page: number) => void }) {
 
     const onClick = (page: number) => () => {
-        if(page >= 1 && page <= paging.max){
+        if (page >= 1 && page <= paging.max) {
             paging.onSelect(page);
-        } 
+        }
     }
 
     return (<div className="__heading-pages">
@@ -55,8 +56,10 @@ export default function Heading<T>(heading: HeadingType<T>) {
     return (
         <div className="__heading-container">
             <h2>{heading.title}</h2>
-            {heading.filter && <div className="__heading-filter">Filter</div>}
-            { showPaging ? heading.paging && <Pages {...heading.paging} /> : <></>}
+            <div className="__heading-actions">
+                {heading.filter && <div className="__heading-filter"><Select {...heading.filter} /></div>}
+                {showPaging ? heading.paging && <Pages {...heading.paging} /> : <></>}
+            </div>
         </div>
     );
 }

@@ -94,7 +94,7 @@ const jsonFetch: (path: String) => FetchResult = (path) => {
 const service: FetchService = {
     ping: () => jsonFetch('/check/ping'),
     user: (provider: Provider) => jsonFetch(`/api/${provider}/me`),
-    assignments: (provider: Provider, page?: number) => jsonFetch(`/api/${provider}/assignments?page=${page || 1}`),
+    assignments: (provider: Provider, page?: number, state?: string) => jsonFetch(`/api/${provider}/assignments?page=${page || 1}&state=${state || 'all'}`),
     commits: (provider: Provider, page?: number) => jsonFetch(`/api/${provider}/commits?page=${page || 1}`),
     repos: (provider: Provider, page?: number) => jsonFetch(`/api/${provider}/repos?page=${page || 1}`)
 }

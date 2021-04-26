@@ -1,13 +1,12 @@
 import { Fragment, useRef } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
+import { Provider } from "../../state/State";
+import { Select } from "../misc/select";
 import './navBar.css'
 import { NavBarProps } from "./NavBarProps";
 
 export default function NavBar({ hasRounter, provider, onSelect }: NavBarProps) {
     const RouterWrap = hasRounter ? BrowserRouter : Fragment;
-    const handleChange = (e: any) => {
-        onSelect(e.target.value);
-    }
     const check = useRef<HTMLInputElement>(null);
     return (
         <RouterWrap>
@@ -36,11 +35,11 @@ export default function NavBar({ hasRounter, provider, onSelect }: NavBarProps) 
                     </li>
                 </ul>
                 <div className="providers">
-                    <select value={provider.name} onChange={handleChange}>
-                        <option value="Github">Github</option>
-                        <option value="Gitlab">Gitlab</option>
-                        <option value="Bitbucket">Bitbucket</option>
-                    </select>
+                    <Select
+                        items={["Github", "Gitlab", "Bitbucket"].map(i => ({ value: i as Provider, display: i }))}
+                        onSelect={onSelect}
+                        selected={provider.name}
+                    />
                 </div>
             </nav>
         </RouterWrap>
