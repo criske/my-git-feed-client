@@ -1,23 +1,27 @@
 .splash-container {
     height: 100%;
+}
+
+.splash-waking {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.splash-container > h1 {
+.splash-waking > h1 {
     font-weight: 700;
     font-size:8vw;
     color: var(--clr-primary-500);
 }
 
-.splash-container > svg {
+.splash-waking > svg {
     animation: wait-fading-loop 3s infinite;
     height: 3em;
 }
 
-.splash-container > button {
+.splash-waking button {
     all: unset;
     padding: 0.5em 1em;
     background-color: var(--clr-secondary-500);
@@ -31,4 +35,8 @@
     0% { opacity: 0; }
     50% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+.splash-about {
+    padding: var(--side-gap);
 }
