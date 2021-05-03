@@ -4,15 +4,12 @@ import { Provider } from "../../state/State";
 import { Select } from "../misc/select";
 import './navBar.css'
 import { NavBarProps } from "./NavBarProps";
-import { useHistory } from "react-router-dom";
 
 export default function NavBar({ hasRounter, provider, onSelect }: NavBarProps) {
     const RouterWrap = hasRounter ? BrowserRouter : Fragment;
     const check = useRef<HTMLInputElement>(null);
-    const history = useHistory();
 
     const onSelectDecorator = (provider: Provider) => {
-        history.push("/");
         onSelect(provider);
     }
     return (
