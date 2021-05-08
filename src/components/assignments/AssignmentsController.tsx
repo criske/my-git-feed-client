@@ -11,7 +11,7 @@ export default function AssignmentsController({ location }: History) {
     const { state, actions } = useContext(StateContext);
     const [filterPage, setFilterPage] = useState({
         page: 1,
-        filter: state.pages.assignments?.filter || "ALL"
+        filter: state.pages.assignments?.filter || "OPEN"
     });
     useEffect(() => {
         actions.fetch("assignments", ActionType.ASSIGNMENTS, [state.provider.name, filterPage.page, filterPage.filter]);

@@ -57,7 +57,8 @@ export const StateProvider: React.FC = ({ children }) => {
                     provider: {
                         name: action.payload?.provider,
                         user: action.payload
-                    }
+                    },
+                    pages: INITIAL_STATE.pages
                 }
                 return updated;
             }
