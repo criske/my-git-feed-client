@@ -20,12 +20,14 @@ export default function CommitsController({ location }: History) {
     }, [page]);
     const commits: CommitType[] = (state.pages.commits.entries || []).map((c: any) => ({
         date: c.date,
-        sha: c.sha,
-        url: c.url,
+        sha: {
+            title: c.sha,
+            href: c.url
+        },
         message: c.message,
         repo: {
-            name: c.repo.fullName,
-            url: c.repo.url
+            title: c.repo.fullName,
+            href: c.repo.url
         },
     }))
     const paging: PagingType = {

@@ -1,12 +1,10 @@
+import { LinkTarget, LinkType } from "../misc/link";
+
 export interface AssignmentType {
-    title: string;
+    title: LinkType;
     body: string;
-    url: string;
     isOpen: boolean;
-    repo: {
-        name: string;
-        url: string;
-    };
+    repo: LinkType;
     author: {
         name: string;
         avatar?: string;

@@ -1,10 +1,8 @@
+import { LinkType } from "../misc/link";
+
 export interface CommitType {
     date: string;
-    sha: string;
-    url: string;
+    sha: LinkType;
     message?: string;
-    repo: {
-        name: string;
-        url: string;
-    }
+    repo: LinkType
 }

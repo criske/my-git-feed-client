@@ -12,7 +12,6 @@ export default function Assignment(assignment: AssignmentType) {
     return (
         <Card
             title={assignment.title}
-            subtitle={assignment.url}
             body={
                 <div dangerouslySetInnerHTML={{ __html: htmlBody }}></div>
             }>

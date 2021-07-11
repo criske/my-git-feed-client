@@ -17,12 +17,14 @@ export default function AssignmentsController({ location }: History) {
         actions.fetch("assignments", ActionType.ASSIGNMENTS, [state.provider.name, filterPage.page, filterPage.filter]);
     }, [location.key, state.provider.name, filterPage]);
     const assignments: AssignmentType[] = (state.pages.assignments.entries || []).map((a: any) => ({
-        title: a.title,
+        title: {
+            title: a.title,
+            href: a.url
+        },
         body: a.body,
-        url: a.url,
         repo: {
-            name: a.repo.fullName,
-            url: a.repo.url
+            title: a.repo.fullName,
+            href: a.repo.url
         },
         author: {
             name: a.author.name,

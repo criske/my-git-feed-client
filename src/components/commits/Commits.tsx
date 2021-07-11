@@ -7,7 +7,7 @@ export default function Commits({ commits, paging }: { commits: CommitType[], pa
     return (<div>
         <Heading title="Commits" paging={paging} />
         <div className="grid-container">
-            {commits.map((c: CommitType, i: number) => <Commit key={c.sha} {...c} />)}
+            {commits.map((c: CommitType, i: number) => <Commit key={i} {...c} />)}
         </div>
     </div>)
 }

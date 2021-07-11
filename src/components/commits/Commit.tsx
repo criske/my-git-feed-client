@@ -12,7 +12,7 @@ export default function Commit(commit: CommitType) {
     }, [commit.message]);
     return (
         <Card
-            title={commit.repo.name}
+            title={commit.repo}
             subtitle={commit.sha}
             body={<div dangerouslySetInnerHTML={{ __html: htmlBody }}></div>}
             footer={formatDate(commit.date)}
