@@ -14,10 +14,7 @@ export type FetchTypes = 'ping' | 'user' | 'assignments' | 'commits' | 'repos'
 
 export type FetchService = { [key: string]: ProviderFetchRequest | (() => FetchResult) }
 
-
-//TODO: reactive the real base API
-//const BASE_API = 'https://my-git-feed.herokuapp.com';
-const BASE_API = 'http://localhost:8080';
+const BASE_API = (process && process.env.NODE_ENV === 'development') ? 'http://localhost:8080'  : 'https://my-git-feed.herokuapp.com';
 
 const fakeServer: { [key: string]: () => Object } = {
     '/check/ping': () => ({}),
