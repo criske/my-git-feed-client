@@ -15,8 +15,10 @@ export default function ReposController({ location }: History) {
     }, [location.key, state.provider.name, page])
     const entries = state.pages.repos.entries || [];
     const repos: RepoType[] = entries.map((r: any) => ({
-        name: r.simple.name,
-        url: r.simple.url,
+        name: { 
+            title: r.simple.name,
+            href: r.simple.url
+        },
         language: r.language,
         description: r.description === null ? undefined : r.description,
         organization: r.organization === null ? undefined : r.organization,

@@ -22,7 +22,6 @@ export default function Repo(repo: RepoType) {
     return (
         <Card
             title={repo.name}
-            subtitle={repo.url}
             body={
                 <div>{repo.description || "No description"}</div>
             }

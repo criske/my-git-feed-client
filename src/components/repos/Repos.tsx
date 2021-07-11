@@ -8,7 +8,7 @@ export default function Repos({ repos, paging }: { repos: RepoType[], paging: Pa
     return (
         <div>
             <Heading title="Owned Repositories" paging={paging} />
-            <div className="grid-container">{repos.map((r: RepoType) => <Repo key={r.name} {...r} />)}</div>
+            <div className="grid-container">{repos.map((r: RepoType, i: number) => <Repo key={i} {...r} />)}</div>
         </div>
     );
 }

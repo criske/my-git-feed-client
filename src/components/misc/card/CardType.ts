@@ -1,8 +1,9 @@
-import { ReactChildren, ReactNode } from "react";
+import { ReactNode } from "react";
+import { LinkType } from "../link";
 
 export interface CardType {
-    title?: string;
-    subtitle?: string;
+    title?: LinkType;
+    subtitle?: LinkType;
     body: ReactNode;
     header?: ReactNode;
     footer?: ReactNode;

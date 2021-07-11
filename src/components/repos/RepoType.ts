@@ -1,6 +1,7 @@
+import { LinkType } from "../misc/link";
+
 export interface RepoType {
-    name: string;
-    url: string;
+    name: LinkType;
     language: string;
     description? : string;
     organization?: string;
