@@ -21,7 +21,7 @@ export default function AssignmentsController({ location }: History) {
             title: a.title,
             href: a.url
         },
-        body: a.body,
+        body: a.body || "",
         repo: {
             title: a.repo.fullName,
             href: a.repo.url
